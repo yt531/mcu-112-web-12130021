@@ -29,7 +29,9 @@ input[type="checkbox"] {
 }
 
 .form form {
+  display: flex;
   background-color: white;
+  align-items: center;
 }
 
 .form input {
@@ -58,6 +60,8 @@ input[type="checkbox"] {
   color: #777;
   font-size: 28px;
   font-weight: 200;
+  display: flex;
+  justify-content: space-between;
 }
 
 .main button {
@@ -69,6 +73,9 @@ footer {
   padding: 5px 15px;
   border: solid 1px #ddd;
   background-color: white;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
 }
 
 span.completed {
