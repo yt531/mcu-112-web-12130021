@@ -5,7 +5,7 @@ export class Todo {
     public hasFinished: boolean = false
   ) {}
 
-  finishDate: Date;
+  finishDate?: Date;
 
   setFinished(finishDate: Date): void {
     this.hasFinished = true;
