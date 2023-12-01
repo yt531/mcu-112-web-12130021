@@ -18,6 +18,10 @@ export class AppComponent {
   taskService = inject(TaskService);
   tasks = [new Todo(1, '待辦事項 A'), new Todo(2, '待辦事項 B')];
 
+  onAdd(): void {
+    this.taskService.add('待辦事項 C');
+  }
+
   onStateChange(task: { index: number; state: boolean }): void {
     if (task.state) {
       this.tasks[task.index].setFinished(new Date());
