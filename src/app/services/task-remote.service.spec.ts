@@ -1,16 +1,36 @@
-import { TestBed } from '@angular/core/testing';
+import { HttpClient } from '@angular/common/http';
+import { inject, Injectable } from '@angular/core';
+import { Observable } from 'rxjs';
 
-import { TaskRemoteService } from './task-remote.service';
+import { Todo } from '../model/todo';
 
-describe('TaskRemoteService', () => {
-  let service: TaskRemoteService;
+@Injectable({
+  providedIn: 'root',
+})
+export class TaskRemoteService {
+  private readonly url = 'http://localhost:3000/tasks';
 
-  beforeEach(() => {
-    TestBed.configureTestingModule({});
-    service = TestBed.inject(TaskRemoteService);
-  });
+  private readonly httpClient = inject(HttpClient);
 
-  it('should be created', () => {
-    expect(service).toBeTruthy();
-  });
-});
+  getById(id: number): Observable<Todo | undefined> {
+    return this.httpClient.get<Todo | undefined>(`${this.url}/${id}`);
+  }
+
+  getAll(): Observable<Todo[]> {
+    return this.httpClient.get<Todo[]>(this.url);
+  }
+
+  add(content: string): Observable<Todo> {
+    const task = new Todo({ content });
+    return this.httpClient.post<Todo>(this.url, task);
+  }
+
+  updateState({ id, content }: Todo, hasFinished: boolean): Observable<Todo> {
+    const task = new Todo({ content, hasFinished });
+    return this.httpClient.put<Todo>(`${this.url}/${id}`, task);
+  }
+
+  remove(id: number): void {
+    throw new Error('Method not implemented.');
+  }
+}
