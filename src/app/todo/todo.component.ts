@@ -22,7 +22,7 @@ export class TodoComponent {
   task!: Todo;
 
   @Output()
-  remove = new EventEmitter<void>();
+  edit = new EventEmitter<void>();
 
   @Output()
   view = new EventEmitter<void>();
