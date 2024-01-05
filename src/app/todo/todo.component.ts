@@ -25,6 +25,9 @@ export class TodoComponent {
   edit = new EventEmitter<void>();
 
   @Output()
+  remove = new EventEmitter<number>();
+
+  @Output()
   view = new EventEmitter<void>();
 
   @Output()
